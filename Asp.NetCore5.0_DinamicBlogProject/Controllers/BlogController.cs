@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    public class CategoryController : Controller
+    public class BlogController : Controller
     {
-        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var values = categoryManager.GetList();
-            return View(values);
+            var value = blogManager.GetList();
+            return View(value);
         }
     }
 }
