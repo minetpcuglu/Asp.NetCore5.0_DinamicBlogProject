@@ -13,7 +13,13 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var value = blogManager.GetList();
+            var value = blogManager.GetBlogListWithCategory();
+            return View(value);
+        }
+
+        public IActionResult BlogReadAll(int id)
+        {
+            var value = blogManager.GetBlogById(id);
             return View(value);
         }
     }
