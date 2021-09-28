@@ -19,6 +19,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 
         public IActionResult BlogReadAll(int id)
         {
+            //Comment içi ID den gelen degeri belirleme
+            ViewBag.Id = id;
             var value = blogManager.GetBlogById(id);
             return View(value);
         }

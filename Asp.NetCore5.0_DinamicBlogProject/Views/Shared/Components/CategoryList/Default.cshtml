@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Category>
+
+<div class="tech-btm">
+    <h4>Kategoriler</h4>
+    <ul class="list-group single">
+        @foreach (var category in Model)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+               @category.CategoryName
+                <span class="badge badge-primary badge-pill">@category.CategoryName.Count()</span>
+            </li>
+        }
+
+
+    </ul>
+</div>

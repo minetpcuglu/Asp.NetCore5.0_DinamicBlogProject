@@ -61,13 +61,15 @@
                             </h3>
                             <p>
                                 @item.BlogContent
+                            
                             </p>
                             <a href="/Blog/Index/" class="btn btn-primary read-m">Blog Listesine Git</a>
                         </div>
                     }
 
+                 
 
-                    <partial name="~/Views/Shared/PartialViews/_CommentListByBlogPartialView.cshtml" />
+                @await Component.InvokeAsync("CommentListByBlog", new {id=ViewBag.Id })
                      <partial name="~/Views/Shared/PartialViews/_CommentAddPartialView.cshtml" />
 
                  
@@ -89,25 +91,14 @@
                             </form>
 
                         </div>
+
+
+
+                        @await Component.InvokeAsync("CategoryList")
+
+
                         <div class="tech-btm">
-                            <h4>Categories</h4>
-                            <ul class="list-group single">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Cras justo odio
-                                    <span class="badge badge-primary badge-pill">14</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Dapibus ac facilisis in
-                                    <span class="badge badge-primary badge-pill">2</span>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    Morbi leo risus
-                                    <span class="badge badge-primary badge-pill">1</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tech-btm">
-                            <h4>Top stories of the week</h4>
+                            <h4>Yazarın Diğer Yazıları</h4>
 
                             <div class="blog-grids row mb-3">
                                 <div class="col-md-5 blog-grid-left">
@@ -148,7 +139,7 @@
                             </div>
                         </div>
                         <div class="single-gd my-5 tech-btm">
-                            <h4>Our Progress</h4>
+                            <h4>Son Eklenen Postlar</h4>
                             <div class="progress">
                                 <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0"
                                      aria-valuemax="100"></div>
