@@ -24,5 +24,9 @@ namespace EntityLayer.Concrete
 
         /*İlişkiler*/
         public List<Comment> Comments { get; set; }
+
+        /*İlişkiler*/
+        public int WriterId { get; set; }
+        public virtual Writer Writer { get; set; }
     }
 }
