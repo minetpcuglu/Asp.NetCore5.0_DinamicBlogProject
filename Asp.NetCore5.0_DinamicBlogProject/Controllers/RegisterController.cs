@@ -27,25 +27,30 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult WriterAdd(Writer writer)
+        public IActionResult WriterAdd(Writer writer, string city , string againPassword)
         {
             ValidationResult result = writerRules.Validate(writer);
-            if (result.IsValid)
+            if (result.IsValid && writer.WriterPassword==againPassword)
             {
                 writer.WriterStatus = true;
                 writer.WriterAbout = "Deneme";
                 writerManager.Add(writer);
                 return RedirectToAction("Index", "Blog");
             }
-            else
+            else if(!result.IsValid)
             {
                 foreach (var rule in result.Errors)
                 {
                     ModelState.AddModelError(rule.PropertyName, rule.ErrorMessage);
                 }
-                return View();
+        
                                         
             }
+            else
+            {
+                ModelState.AddModelError("WriterPassword", "Hatalı giriş. Girilen şifreler eşleşmedi tekrar deneyiniz.");
+            }
+            return View();
       
         }
     }
