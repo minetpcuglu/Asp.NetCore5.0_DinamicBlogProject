@@ -9,6 +9,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Models
     public class WriterAndCityVM
     {
         public List<CitiesVM> CitiesVMs { get; set; }
+        
         public List<Writer> Writers { get; set; }
     }
 }

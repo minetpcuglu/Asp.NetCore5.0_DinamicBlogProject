@@ -31,18 +31,22 @@
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label for="exampleInputPassword1 mb-2"><b>Şifre:</b></label>
-                            <input asp-for="WriterPassword" type="password"  class="form-control" />
+                            <input asp-for="WriterPassword" type="password" class="form-control" />
                             <span asp-validation-for="WriterPassword" class="text-danger"></span>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="exampleInputPassword2 mb-2"><b>Tekrar Şifre Girin:</b></label>
-                            <input name="againPassword" type="password" class="form-control" placeholder="Şifre Tekrarı.."/>
-                           
+                            <input name="againPassword" type="password" class="form-control" placeholder="Şifre Tekrarı.." />
+
                         </div>
                         <div class="col-md-6 mb-3">
                             <label asp-for="WriterImage"> <b>Resim Yolu:</b></label>
                             <input asp-for="WriterImage" class="form-control" />
                             <span asp-validation-for="WriterImage" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword2 mb-2"><b>Şehir:</b></label>
+                            @Html.DropDownList("GetCity", (ViewBag.getCity), "Şehir Seçiniz", new { @class = "form-control dropdown" })
                         </div>
                     </div>
 
