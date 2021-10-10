@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,9 +23,20 @@ namespace Asp.NetCore5._0_DinamicBlogProject
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services) //authorzie için yapýlandýrma yapma
         {
             services.AddControllersWithViews();
+
+            services.AddSession();//session yonetimi için.
+
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
+            });
+            
+            
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +58,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();//session yönetimi için
 
             app.UseRouting();
 

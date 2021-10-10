@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    public class AboutControlller : Controller
+    public class AboutController : Controller
     {
         AboutManager aboutManager = new AboutManager(new EfAboutRepository());
         public IActionResult Index()
