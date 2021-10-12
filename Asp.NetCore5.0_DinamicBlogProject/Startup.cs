@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
             });
+
+            services.AddMvc();
+            services.AddAuthentication(
+                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+                {
+                    x.LoginPath = "/Login/Index/";
+                }
+                );
             
             
            
@@ -62,6 +71,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject
             app.UseSession();//session yönetimi için
 
             app.UseRouting();
+
+            app.UseAuthentication(); //login 
 
             app.UseAuthorization();
 

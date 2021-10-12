@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
    
-    [AllowAnonymous] //geçiçi
+   
     public class WriterController : Controller
     {
        
