@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Abstract;
+﻿
+using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
@@ -46,6 +47,12 @@ namespace BusinessLayer.Concrete
         public List<Blog> GetList()
         {
             return _blogDal.GetAll();
+        }
+
+        //Footer son postlardaki son 3 post için 
+        public List<Blog> GetLast3Blog()
+        {
+            return _blogDal.GetAll().Take(3).ToList();
         }
 
         public void Update(Blog blog)
