@@ -39,7 +39,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                 await HttpContext.SignInAsync(claimsPrincipal);
                 return RedirectToAction("Index", "Writer");
             }
-            return View();
+            else
+            {
+                ModelState.AddModelError("", "Hatalı Kullanıcı Adı/Şifre");
+                return View();
+            }
+           
         }
 
 
