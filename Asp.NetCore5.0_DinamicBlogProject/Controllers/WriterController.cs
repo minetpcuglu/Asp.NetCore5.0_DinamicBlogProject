@@ -21,5 +21,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+
+        public IActionResult WriterTextThema()
+        {
+            return View();
+        }
     }
 }
