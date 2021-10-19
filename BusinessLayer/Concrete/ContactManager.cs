@@ -22,5 +22,25 @@ namespace BusinessLayer.Concrete
         {
             _contactDal.insert(contact);
         }
+
+        public void Delete(Contact t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Contact GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Contact> GetList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Contact t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
