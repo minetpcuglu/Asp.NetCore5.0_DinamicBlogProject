@@ -1,0 +1,49 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "GetBlogListByWriterId";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Yazarların Blog Listesi</h1>
+<br />
+
+<table class="table table-striped  table-hover table-bordered">
+
+    <thead>
+        <tr>
+            <th style="width:30px">#</th>
+            <th style="width:100px">Blog Başlığı</th>
+            @*<th style="width:150px">Blog Görseli</th>*@
+            <th>Oluşturulma Tarihi</th>
+            <th style="width:200px">Kategori</th>
+            <th style="width:200px">Durum</th>
+            <th style="width:160px">Update / Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var blog in Model)
+        {
+            <tr>
+                <td>@blog.BlogId</td>
+                <td>@blog.BlogTitle</td>
+                @*<td><img src="@blog.BlogImage" width="80" /> </td>*@
+                <td>@blog.BlogCreateDate</td>
+                <td>@blog.CategoryId</td>
+                <td>@blog.BlogStatus</td>
+
+                <td>
+                    <a href="/Admin/MovieUpdate/@blog.BlogId" class="btn btn-primary btn-sm">Güncelle</a>
+                    <form action="/Admin/MovieDelete/" method="post" style="display:inline">
+                        <input type="hidden" name="movieId" value="@blog.BlogId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                    </form>
+                </td>
+
+            </tr>
+        }
+       
+    </tbody>
+</table>
+<br />
+<a href="/Admin/MovieUpdate/" class="btn btn-success btn-sm">Yeni Blog Oluştur</a>

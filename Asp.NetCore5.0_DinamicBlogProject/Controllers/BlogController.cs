@@ -26,5 +26,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             var value = blogManager.GetBlogById(id);
             return View(value);
         }
+
+        public IActionResult GetBlogListByWriterId(int id)
+        {
+            //ViewBag.id = 2;
+            var value = blogManager.GetBlogListByWriter(1);
+            return View(value);
+        }
     }
 }
