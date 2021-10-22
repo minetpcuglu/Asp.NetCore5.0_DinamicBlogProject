@@ -1,0 +1,54 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+
+
+
+<h1>Blog Ekleme Sayfası</h1>
+<br />
+<form method="post" asp-controller="Blog" asp-action="BlogAdd">
+    <div>
+        <div>
+            <label asp-for="BlogTitle"> <b>Başlık:</b></label>
+            <input asp-for="BlogTitle" type="text" class="form-control" />
+            <span asp-validation-for="BlogTitle" class="text-danger"></span>
+
+            <br />
+            <br />
+
+            <label asp-for="BlogContent"> <b>Blog Oluştur:</b></label>
+            <input asp-for="BlogContent" class="form-control" />
+            <span asp-validation-for="BlogContent" class="text-danger"></span>
+
+            <br />
+            <br />
+            <label asp-for="BlogImage"> <b>Resim Yolu:</b></label>
+            <input asp-for="BlogImage" class="form-control" />
+            <span asp-validation-for="BlogImage" class="text-danger"></span>
+            <br />
+            <br />
+            <label asp-for="BlogThumbnailImage"> <b>Blog Küçük Görsel:</b></label>
+            <input asp-for="BlogThumbnailImage" class="form-control" />
+            <span asp-validation-for="BlogThumbnailImage" class="text-danger"></span>
+            <br />
+            <br />
+            <label asp-for="CategoryId"> <b>Kategori:</b></label>
+           @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.value , new {@class="form-control" })
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+            <br />
+            <br />
+        </div>
+    </div>
+
+    <br>
+
+    <button type="submit" class="btn btn-outline-success"><b>Blog Oluştur</b></button>
+    <br />
+
+
+</form>
+
+

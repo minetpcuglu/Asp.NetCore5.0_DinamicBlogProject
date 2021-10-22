@@ -25,10 +25,10 @@
         @foreach (var blog in Model)
         {
             <tr>
-                <td>@blog.BlogId</td>
+                <th>@blog.BlogId</th>
                 <td>@blog.BlogTitle</td>
                 @*<td><img src="@blog.BlogImage" width="80" /> </td>*@
-                <td>@blog.BlogCreateDate</td>
+                <td>@blog.BlogCreateDate.ToShortDateString()</td>
                 <td>@blog.CategoryId</td>
                 <td>@blog.BlogStatus</td>
 
