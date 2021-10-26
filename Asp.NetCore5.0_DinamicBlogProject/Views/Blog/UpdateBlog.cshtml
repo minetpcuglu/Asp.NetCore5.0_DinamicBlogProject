@@ -17,12 +17,7 @@
                 <span asp-validation-for="BlogTitle" class="text-danger"></span>
 
             </div>
-            <div class="form-group">
-                <label asp-for="BlogContent"> <b>İçerik:</b></label>
-                <textarea asp-for="BlogContent" class="form-control">@Model.BlogContent</textarea>
-                <span asp-validation-for="BlogContent" class="text-info"></span>
 
-            </div>
             <div class="form-group">
                 <label asp-for="BlogThumbnailImage"><b> Küçük Resim Url: </b>  </label>
                 <input asp-for="BlogThumbnailImage" class="form-control" value="@Model.BlogThumbnailImage" />
@@ -36,9 +31,15 @@
 
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId"><b> Kategori: </b>  </label>
-                <input asp-for="CategoryId" class="form-control" value="@Model.CategoryId" />
+                <label asp-for="CategoryId"> <b>Kategori:</b></label>
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.value, new { @class = "form-control" })
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogContent"> <b>İçerik:</b></label>
+                <textarea asp-for="BlogContent" class="form-control">@Model.BlogContent</textarea>
+                <span asp-validation-for="BlogContent" class="text-info"></span>
 
             </div>
             <button type="submit" class="btn btn-primary">Güncelle</button>

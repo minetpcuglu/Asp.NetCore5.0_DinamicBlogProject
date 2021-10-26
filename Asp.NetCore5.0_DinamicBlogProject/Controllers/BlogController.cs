@@ -91,14 +91,24 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpGet]
         public IActionResult UpdateBlog(int id)
         {
+            List<SelectListItem> categoryValue = (from x in categoryManager.GetList()
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.CategoryName,
+                                                      Value = x.CategoryId.ToString()
+                                                  }).ToList();
+
+            ViewBag.value = categoryValue;
             var value = blogManager.GetById(id);
             return View(value);
         }
         [HttpPost]
         public IActionResult UpdateBlog(Blog blog)
-        {
-           
-         
+        {         
+            blog.WriterId = 1;
+            blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            blog.BlogStatus = true;
+            blogManager.Update(blog);
             return RedirectToAction("GetBlogListByWriterId");
         }
     }

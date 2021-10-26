@@ -20,7 +20,7 @@
             <br />
 
             <label asp-for="BlogContent"> <b>Blog Oluştur:</b></label>
-            <input asp-for="BlogContent" class="form-control" />
+            <textarea asp-for="BlogContent" class="form-control"></textarea>
             <span asp-validation-for="BlogContent" class="text-danger"></span>
 
             <br />
@@ -36,7 +36,7 @@
             <br />
             <br />
             <label asp-for="CategoryId"> <b>Kategori:</b></label>
-           @Html.DropDownListFor(x=>x.CategoryId,(List<SelectListItem>)ViewBag.value , new {@class="form-control" })
+            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.value, new { @class = "form-control" })
             <span asp-validation-for="CategoryId" class="text-danger"></span>
             <br />
             <br />
@@ -45,7 +45,7 @@
 
     <br>
 
-    <button type="submit" class="btn btn-outline-success"><b>Blog Oluştur</b></button>
+    <button type="submit" href="/Blog/BlogAdd/" class="btn btn-outline-success"><b>Blog Oluştur</b></button>
     <br />
 
 
