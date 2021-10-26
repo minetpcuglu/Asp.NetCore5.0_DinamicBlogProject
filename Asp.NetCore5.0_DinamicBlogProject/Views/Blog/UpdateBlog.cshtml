@@ -1,0 +1,51 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "UpdateBlog";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Blog Düzenleme Sayfası</h1>
+<hr />
+<form method="post" asp-controller="Blog" asp-action="UpdateBlog">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" name="BlogId" value="@Model.BlogId" />
+            <div class="form-group">
+                <label asp-for="BlogTitle"><b> Başlık: </b>  </label>
+                <input asp-for="BlogTitle" class="form-control" value="@Model.BlogTitle" />
+                <span asp-validation-for="BlogTitle" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogContent"> <b>İçerik:</b></label>
+                <textarea asp-for="BlogContent" class="form-control">@Model.BlogContent</textarea>
+                <span asp-validation-for="BlogContent" class="text-info"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogThumbnailImage"><b> Küçük Resim Url: </b>  </label>
+                <input asp-for="BlogThumbnailImage" class="form-control" value="@Model.BlogThumbnailImage" />
+                <span asp-validation-for="BlogThumbnailImage" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogImage"><b>  Resim Url: </b>  </label>
+                <input asp-for="BlogImage" class="form-control" value="@Model.BlogImage" />
+                <span asp-validation-for="BlogImage" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId"><b> Kategori: </b>  </label>
+                <input asp-for="CategoryId" class="form-control" value="@Model.CategoryId" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+
+        </div>
+        <br />
+    </div>
+</form>
+
+

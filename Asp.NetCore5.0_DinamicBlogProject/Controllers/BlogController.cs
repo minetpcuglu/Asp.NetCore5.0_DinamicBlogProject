@@ -80,5 +80,26 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             return View();
            
         }
+
+        public IActionResult DeleteBlog(int id)
+        {
+            var value = blogManager.GetById(id);
+            blogManager.Delete(value);
+            return RedirectToAction("GetBlogListByWriterId");
+        }
+
+        [HttpGet]
+        public IActionResult UpdateBlog(int id)
+        {
+            var value = blogManager.GetById(id);
+            return View(value);
+        }
+        [HttpPost]
+        public IActionResult UpdateBlog(Blog blog)
+        {
+           
+         
+            return RedirectToAction("GetBlogListByWriterId");
+        }
     }
 }

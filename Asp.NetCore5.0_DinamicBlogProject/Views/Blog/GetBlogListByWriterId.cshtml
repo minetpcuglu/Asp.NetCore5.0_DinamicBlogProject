@@ -33,11 +33,9 @@
                 <td>@blog.BlogStatus</td>
 
                 <td>
-                    <a href="/Admin/MovieUpdate/@blog.BlogId" class="btn btn-primary btn-sm">Güncelle</a>
-                    <form action="/Admin/MovieDelete/" method="post" style="display:inline">
-                        <input type="hidden" name="movieId" value="@blog.BlogId" />
-                        <button type="submit" class="btn btn-danger btn-sm">Sil</button>
-                    </form>
+                    <a href="/Blog/UpdateBlog/@blog.BlogId" class="btn btn-primary btn-sm">Güncelle</a>
+                    <a href="/Blog/DeleteBlog/@blog.BlogId" class="btn btn-danger btn-sm">Sil</a>
+                  
                 </td>
 
             </tr>
