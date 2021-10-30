@@ -1,0 +1,44 @@
+﻿@model List<Blog> 
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Son Yayınlanan Bloglar</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th> # </th>
+                                <th> Blog </th>
+                                <th> Kategori </th>
+                                <th> Tarih </th>
+                                <th> Detaylar </th>
+                              
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var blog in Model)
+                            {
+                            <tr>
+                                <td>
+                                    <img src="@blog.BlogImage" class="mr-2" alt="image"> 
+                                </td>
+                                <td> @blog.BlogTitle</td>
+                                <td>
+                                    <label class="badge badge-gradient-success">@blog.Category.CategoryName</label>
+                                </td>
+                                <td> @blog.BlogCreateDate.ToShortDateString()</td>
+                                <td>
+                                    <a href ="/Blog/BlogReadAll/@blog.BlogId" class="btn btn-dark">Detaylar</a>
+                                </td>
+                          
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
