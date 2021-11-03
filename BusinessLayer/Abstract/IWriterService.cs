@@ -11,7 +11,8 @@ namespace BusinessLayer.Abstract
     {
     
         List<Writer> GetBlogById(int id);
+        List<Writer> GetWriterById(int id); //Include metodu kullanımı için yazar göre listeleme
 
-   
+
     }
 }

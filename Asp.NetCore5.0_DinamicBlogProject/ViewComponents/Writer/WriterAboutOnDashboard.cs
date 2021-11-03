@@ -14,8 +14,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.ViewComponents.Writer
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         public IViewComponentResult Invoke()
         {
-           
-            return View();
+            var value = writerManager.GetWriterById(1);
+            return View(value);
         }
     }
 }
