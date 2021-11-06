@@ -50,7 +50,7 @@ namespace BusinessLayer.Concrete
 
         public void Update(Writer writer)
         {
-            throw new NotImplementedException();
+            _writerDal.Update(writer);
         }
     }
 }

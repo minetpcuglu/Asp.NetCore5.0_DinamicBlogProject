@@ -4,58 +4,49 @@
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
 
-<form method="post" asp-controller="Writer" asp-action="WriterEditProfile">
-  
-        <div class="col-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
-                 
-                    <form class="forms-sample">
-                        <div class="form-group">
-                            <label asp-for="WriterId"> <b>ID:</b></label>
-                            <input asp-for="WriterId"  type="text" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="WriterName"> <b>Yazar Adı:</b></label>
-                            <input asp-for="WriterName" type="text" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="WriterMail"> <b>Mail:</b></label>
-                            <input asp-for="WriterMail" type="email" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="WriterPassword"> <b>Şifre:</b></label>
-                            <input asp-for="WriterPassword" type="password" class="form-control" />
-                        </div>
-                 
+<form method="post" asp-controller="Writer" asp-action="WriterEditProfile" enctype="multipart/form-data">
 
-                        <div class="form-group">
-                            <label><b>Yazar Görsel:</b></label>
-                            <input type="file" name="img[]" class="file-upload-default">
-                            <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-gradient-primary" type="button">Dosya Ekle</button>
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <label asp-for="WriterAbout"> <b>Yazar Hakkında:</b></label>
-                            <textarea asp-for="WriterAbout" class="form-control"></textarea>
-                        </div>
-                        <br />
-                        <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
-                        <button class="btn btn-light">İptal</button>
-                    </form>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
+
+
+                @Html.HiddenFor(x => x.WriterId, new { @class = "form-control" })
+
+                <div class="form-group">
+                    <label asp-for="WriterName"> <b>Yazar Adı Soyadı:</b></label>
+                    <input asp-for="WriterName" type="text" class="form-control" />
+                    <span asp-validation-for="WriterName" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="WriterMail"> <b>Mail:</b></label>
+                    <input asp-for="WriterMail" type="email" class="form-control" />
+                    <span asp-validation-for="WriterMail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WriterPassword"> <b>Şifre:</b></label>
+                    <input asp-for="WriterPassword" class="form-control" />
+                    <span asp-validation-for="WriterPassword" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="WriterImage"> <b>Resim:</b></label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+                <div>
+                    <label asp-for="WriterAbout"> <b>Yazar Hakkında:</b></label>
+                    <textarea asp-for="WriterAbout" class="form-control"></textarea>
+                    <span asp-validation-for="WriterAbout" class="text-danger"></span>
+                </div>
+                <br />
+                <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
+                <button class="btn btn-light">İptal</button>
+
             </div>
         </div>
-    
-    <br>
-
-    <button type="submit" href="/Blog/BlogAdd/" class="btn btn-outline-success"><b>Blog Oluştur</b></button>
-    <br />
+    </div>
 
 
 </form>
