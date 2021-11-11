@@ -6,15 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Asp.NetCore5._0_DinamicBlogProject.ViewComponents.Writer
+namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    public class WriterNotification:ViewComponent
+    public class NotificationController : Controller
     {
         NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());
-        public IViewComponentResult Invoke()
+        public IActionResult Index()
         {
-            var value = notificationManager.GetList();
-            return View(value);
+            return View();
         }
     }
 }
