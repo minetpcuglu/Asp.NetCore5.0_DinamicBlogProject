@@ -10,12 +10,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.ViewComponents.Writer
 {
     public class WriterMessageNotification:ViewComponent
     {
-        MessageManager messageManager = new MessageManager(new EfMessageRepository());
+        Message2Manager messageManager = new Message2Manager(new EfMessage2Repository());
         public IViewComponentResult Invoke()
         {
-            string p;
-            p = "minetopcuoglu6@gmail.com";
-             var value = messageManager.GetInboxListByWriter(p);
+            int id = 2;
+            
+             var value = messageManager.GetInboxListByWriter(id);
             return View(value);
         }
     }
