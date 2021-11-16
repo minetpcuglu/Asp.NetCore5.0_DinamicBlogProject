@@ -1,0 +1,49 @@
+﻿@model List<Notification> 
+@{
+    ViewData["Title"] = "AllNotification";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Bildirimler</h1>
+<br />
+<table class="table table-bordered table-secondary table-hover">
+    <tr>
+        <th>#</th>
+        <th>Bildirim</th>
+        <th>Tarih</th>
+    </tr>
+    @foreach (var notification in Model)
+	{
+		 <tr>
+             <td>@notification.NotificationId</td>
+             <td>@notification.NotificationDetail</td>
+             <td>
+                 <p>@notification.NotificationDate.ToShortDateString()</p>
+                         @{
+                             DateTime end = (DateTime)notification.NotificationDate;
+                             DateTime now = DateTime.Now;
+                             TimeSpan diff = end.Subtract(now);
+                         }
+                         @if (diff.Days != 0)
+                         {
+                             <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"dd")) gün önce</p>
+                         }
+                         else if (diff.Days == 0 && diff.Hours != 0)
+                         {
+                             <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"hh")) saat önce</p>
+                         }
+                         else if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes != 0)
+                         {
+
+                             <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"mm")) dakika önce</p>
+                         }
+                         else
+                         {
+                             <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"ss")) saniye önce</p>
+                         }
+                     </td>
+         </tr>
+	}
+
+</table>
+
