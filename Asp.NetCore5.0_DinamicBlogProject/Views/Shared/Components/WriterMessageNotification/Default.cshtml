@@ -20,16 +20,17 @@
                 DateTime now = DateTime.Now;
                 TimeSpan diff = end.Subtract(now);
             }
-            @if (diff.Days != 0 && diff.Hours != 0 && diff.Minutes != 0)
+            @if ( diff.Days!=0)
             {
                 <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"dd")) gün önce</p>
             }
-            else if (diff.Days == 0 && diff.Hours != 0 && diff.Minutes != 0)
+            else if (diff.Days == 0 && diff.Hours != 0 )
             {
                 <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"hh")) saat önce</p>
             }
-            else if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes != 0)
+            else if (diff.Days == 0 && diff.Hours == 0 && diff.Minutes != 0 )
             {
+
                 <p class="text-gray mb-0">@Convert.ToInt32(diff.ToString(@"mm")) dakika önce</p>
             }
             else
