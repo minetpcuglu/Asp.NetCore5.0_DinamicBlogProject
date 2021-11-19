@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules.FluentValidation;
+using DataAccessLayer.Concrete.Context;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -21,8 +22,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         WriterValidator validationRules = new WriterValidator();
 
+        [Authorize]
         public IActionResult Index()
         {
+            var userMail = User.Identity.Name;  //sisteme giren kullanıcı adı soyadı
+            ViewBag.value = userMail;
+            Context c = new Context();
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName);
+            ViewBag.value2 = writerName;
             return View();
         }
 
