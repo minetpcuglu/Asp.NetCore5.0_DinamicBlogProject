@@ -14,8 +14,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.ViewComponents.Writer
         public IViewComponentResult Invoke()
         {
             int id = 2;
-            
-             var value = messageManager.GetInboxListByWriter(id);
+            var value = messageManager.GetInboxListByWriter(id);
             return View(value);
         }
     }
