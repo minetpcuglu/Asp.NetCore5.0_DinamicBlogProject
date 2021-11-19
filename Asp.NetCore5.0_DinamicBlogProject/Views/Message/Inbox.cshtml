@@ -1,0 +1,44 @@
+﻿@model List<Message2>
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Shared/_WriterLayout.cshtml";
+}
+
+<h1>Yazarların Gelen Kutusu</h1>
+<br />
+
+<table class="table table-striped  table-hover table-bordered">
+
+    <thead>
+        <tr>
+            <th >#</th>
+            <th ><b>Konu</b></th>
+            @*<th style="width:150px">Blog Görseli</th>*@
+            <th><b>Gönderen</b></th>
+            <th ><b>Tarih</b></th>
+            <th ><b>Mesajı Gör</b></th>
+       
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model)
+        {
+            <tr>
+                <th>@message.MessageId</th>
+                <td>@message.Subject</td>
+                <td><b>@message.SenderUser.WriterName</b></td>
+                <td>@message.MessageDate.ToShortDateString()</td>
+                <td>
+                    <a href="/Blog/UpdateBlog/@message.MessageId" class="btn btn-primary btn-sm">Detaylar</a>
+                    
+
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<br />
+<a href="/Admin/MovieUpdate/" class="btn btn-success btn-sm">Yeni Mesaj Oluştur</a>
