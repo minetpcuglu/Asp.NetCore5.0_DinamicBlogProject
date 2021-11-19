@@ -19,5 +19,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             var values = message2Manager.GetInboxListByWriter(id);
             return View(values);
         }
+
+        public IActionResult MessageDetails(int id)
+        {
+           
+            
+            var value = message2Manager.GetById(id);
+            return View(value);
+        }
+        
     }
 }
