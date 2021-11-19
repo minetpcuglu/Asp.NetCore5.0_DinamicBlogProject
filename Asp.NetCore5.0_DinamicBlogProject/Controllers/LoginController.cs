@@ -37,7 +37,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                 var userIdentity = new ClaimsIdentity(claims, "a"); //a herhangi bir değer why?
                 ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(userIdentity);
                 await HttpContext.SignInAsync(claimsPrincipal);
-                return RedirectToAction("Index", "Writer");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {

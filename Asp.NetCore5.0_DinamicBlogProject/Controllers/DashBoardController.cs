@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    [AllowAnonymous]
+    
     public class DashBoardController : Controller
     {
         BlogManager blogManager = new BlogManager(new EfBlogRepository());

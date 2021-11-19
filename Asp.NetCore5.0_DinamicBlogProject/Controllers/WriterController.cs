@@ -28,7 +28,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             var userMail = User.Identity.Name;  //sisteme giren kullanıcı adı soyadı
             ViewBag.value = userMail;
             Context c = new Context();
-            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName);
+            var writerName = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterName).FirstOrDefault();
             ViewBag.value2 = writerName;
             return View();
         }
@@ -48,7 +48,11 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpGet]
         public IActionResult WriterEditProfile()
         {
-            var writervalue = writerManager.GetById(1);
+            Context c = new Context();
+            var userMail = User.Identity.Name;
+            //sisteme otantike olan kullanıcının bilgilerinin gelmesi
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var writervalue = writerManager.GetById(writerId);
             return View(writervalue);
         }
 
