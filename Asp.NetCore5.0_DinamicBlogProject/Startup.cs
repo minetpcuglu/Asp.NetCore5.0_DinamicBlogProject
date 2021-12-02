@@ -43,9 +43,9 @@ namespace Asp.NetCore5._0_DinamicBlogProject
                     x.LoginPath = "/Login/Index/";
                 }
                 );
-            
-            
-           
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,6 +78,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
