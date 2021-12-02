@@ -4,32 +4,24 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-
-
+<br /><br />
 <h1>Kategori Ekleme Sayfası</h1>
 <br />
-<form method="post" asp-controller="Category" asp-action="AddCategory">
-    <div>
-        <div>
-            <label asp-for="CategoryName"> <b>Kategori Adı:</b></label>
-            <input asp-for="CategoryName" type="text" class="form-control" />
-            <span asp-validation-for="CategoryName" class="text-danger"></span>
-
-            <br />
-            <br />
-
-            <label asp-for="CategoryDescription"> <b>Açıklama:</b></label>
-            <textarea asp-for="CategoryDescription" class="form-control"></textarea>
-            <span asp-validation-for="CategoryDescription" class="text-danger"></span>
-
-        </div>
-    </div>
-
-    <br>
-
-    <button type="submit" href="/Category/AddCategory/" class="btn btn-outline-success"><b>Kategori Oluştur</b></button>
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    @Html.Label("Kategori Adı:")
+    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryName)
     <br />
+    <br />
+    @Html.Label("Kategori Açıklama:")
+    @Html.TextAreaFor(x => x.CategoryDescription, 15, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.CategoryDescription)
+    <br />
+    <br />
+    <button class="btn btn-info"> Verileri Kaydet</button>
+}
 
 
-</form>
+
 
