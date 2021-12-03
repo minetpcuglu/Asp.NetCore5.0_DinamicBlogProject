@@ -14,22 +14,24 @@
         <th>ID</th>
         <th>Kategori</th>
 
-       
-        <th>Detaylar</th>
+
+
         <th>Aktif Yap</th>
         <th>Pasif Yap</th>
-        
+        <th>Düzenle</th>
+
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.CategoryId</td>
-            <td>@item.CategoryName</td>
-     
-            <td><a href="#" class="btn btn-primary"> <b>Detaylar</b></a></td>
-            <td><a href="#" class="btn btn-outline-danger"> <b>Aktif Yap</b></a></td>
-            <td><a href="#" class="btn btn-outline-warning"> <b>Pasif Yap</b></a></td>
-        </tr>
+<tr>
+    <td>@item.CategoryId</td>
+    <td>@item.CategoryName</td>
+
+
+    <td><a href="#" class="btn btn-outline-danger"> <b>Aktif Yap</b></a></td>
+    <td><a href="Category/CategoryDelete/@item.CategoryId" id="DeleteBtn" onclick="return confirm('Silmek Istediginize Eminmisiniz');" class="btn btn-outline-warning"> <b>Pasif Yap</b></a></td>
+    <td><a href="#" class="btn btn-primary"> <b>Detaylar</b></a></td>
+</tr>
     }
 </table>
 

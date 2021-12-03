@@ -55,5 +55,13 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
             return View();
            
         }
+
+        public IActionResult CategoryDelete(int id)
+        {
+
+            var value = categoryManager.GetById(id);
+            categoryManager.Delete(value);
+            return RedirectToAction("Index");
+        }
     }
 }
