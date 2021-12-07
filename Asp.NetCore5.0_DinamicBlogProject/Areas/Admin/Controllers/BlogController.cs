@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class BlogController : Controller
     {
+
         public IActionResult ExportStaticExelBlogList()
         {
             using (var workbook = new XLWorkbook())
@@ -30,10 +32,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
                 {
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
-                    return File(content, "application / vdn.openxmlformats - officedocument.spreadsheetml.sheet");
+                    return File(content, "application/vdn.openxmlformats-officedocument.spreadsheetml.sheet" , "Calisma1.xlsx");
                 }
             }
-            return View();
+            
         }
 
         public List<BlogModel> GetBlogList()
@@ -46,6 +48,11 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 
             };
             return blogModel;
+        }
+
+        public IActionResult BlogListExcel()
+        {
+            return View();
         }
     }
 }
