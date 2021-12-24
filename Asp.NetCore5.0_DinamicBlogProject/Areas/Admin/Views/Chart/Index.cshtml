@@ -12,3 +12,42 @@
     </div>
 </div>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(DrawonLoad);
+
+    function DrawonLoad()
+    {
+        $(function ()
+        {
+            $.ajax({
+                type: 'GET',
+                url: '/Admin/Chart/CategoryChart/',
+                success: function (chartsdata) {
+                    var Data = chartsdata.jsonList;
+                    var data = new google.visualization.DataTable(); //görselleştirme için
+
+                    data.addColumn('string', 'CategoryName'); //satır olusturma
+                    data.addColumn('number', 'CategoryCount');
+
+                    for (var i = 0; i < Data.length; i++) {
+                        data.addRow([Data[i].CategoryName, Data[i].CategoryCount]);
+                    }
+
+                    //chart cizim işlemi 
+                    var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+
+                    //ekran yazdırma 
+                    chart.draw(data,
+                        {
+                            title: "AspNetCore Google Chart Projesi",
+                            position: "top",
+                            fontsize: "16px"
+
+
+                        });
+                }
+            })
+    }
+</script>
