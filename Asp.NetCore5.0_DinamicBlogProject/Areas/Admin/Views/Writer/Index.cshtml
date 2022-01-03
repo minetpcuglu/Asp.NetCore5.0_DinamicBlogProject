@@ -20,9 +20,23 @@
             contentType: "application/json",
             dataType: "json",
             type: "Get",
-            url: "/Admin/Writer/WriterList",
+            url: "/Admin/Writer/WriterList/",
             success: function (func) {
-                console.log(func);
+                let w = jQuery.parseJSON(func);
+                console.log(w);
+                let tablehtml = "<table class =table table-bordered> <tr><th>Yazar Id </th>  <th> Yazar Adı </th></tr >";
+                $.each(w, (index, value) => {
+                    tablehtml += `<tr><td>${value.Id}</td>  <td>${value.Name}</td></tr>`
+                });
+
+               
+                //verilerin tabloya yansıtma
+                tablehtml += "</table>";
+                $("#writerlist").html(tablehtml);
+
+                    
+               
+
             }
         });
     });
