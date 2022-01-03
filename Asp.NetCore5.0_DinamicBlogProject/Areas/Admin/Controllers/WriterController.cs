@@ -21,6 +21,13 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
             return Json(JsonWriters);
         }
 
+        public IActionResult GetWriterByID(int writerid)
+        {
+            var findWriter = writers.FirstOrDefault(x=>x.Id==writerid);
+            var JsonWriters = JsonConvert.SerializeObject(findWriter);
+            return Json(JsonWriters);
+        }
+
 
         public static List<WriterClass> writers = new List<WriterClass>
         {
