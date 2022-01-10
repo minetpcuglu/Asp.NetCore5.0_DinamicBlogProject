@@ -8,6 +8,7 @@
 <br />
 <button type="button" id="btngetlist" class="btn btn-outline-primary">Yazar Listesi</button>
 <br />
+<br />
 <button type="button" id="btngetbyid" class="btn btn-outline-success">Yazar Getir</button>
 <br />
 <br />
@@ -63,6 +64,14 @@
             success: function (func) {
                 let w = jQuery.parseJSON(func);
                 console.log(w);
+
+
+
+                //İD ye göre yazar getirme
+                let getvalue = `<table class=table table-bordered> <tr> <th> Yazar ID</th> <th>Yazar Adı</th></tr> <tr><td>${w.Id}</td><td>${w.Name}</td></tr></table>`;
+
+                //yazdırma işlemi için 
+                $("#writerget").html(getvalue);
             }
         });
       
