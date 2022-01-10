@@ -16,8 +16,11 @@
 <button type="button" id="btnaddwriter" class="btn btn-outline-info">Yazar Ekle</button>
 <br />
 <br />
+<button type="button" id="btndeletewriter" class="btn btn-outline-danger">Yazar Sil</button>
+<br />
+<br />
 <div id="writerlist">
-  
+
 </div>
 <br />
 <div id="writerget">
@@ -36,6 +39,13 @@
     <br />
     <input type="text" class="form-control" id="txtwritername" placeholder="Yazar Adı" />
     <br />
+</div>
+<br />
+<div>
+    <br />
+    <input type="text" class="form-control" id="txtid" placeholder="Silincek Yazar ID Yazın" />
+    <br />
+
 </div>
 
 @section scripts{
@@ -109,6 +119,23 @@
                 }
             });
         });
+
+        $("#btndeletewriter").click(x => {
+            let id = $("#txtid").val();
+            $.ajax({
+                url: "/Admin/Writer/DeleteWriter/" + id,
+                type: "post",
+                dataType: "json",
+                success: function (func) {
+                 
+                    alert("Yazar Silme işlemi başarılı bir şekilde gerçekleştirildi");
+                }
+          
+        });
+    });
+
+
+
     </script>
 }
 
