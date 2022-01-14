@@ -23,6 +23,12 @@ namespace BlogApiDemo.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult EmployeeAdd()
+        {
+            return Ok();
+        }
+
 
 
     }
