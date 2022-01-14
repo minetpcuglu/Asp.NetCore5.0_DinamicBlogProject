@@ -45,6 +45,16 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
         }
 
 
+        public IActionResult UpdateWriter(WriterClass w)
+        {
+            var writer = writers.FirstOrDefault(x => x.Id == w.Id);//dısarıdan gelen ıd ye eit olmalı
+            writer.Name = w.Name;
+            var jsonWriters = JsonConvert.SerializeObject(w);
+            return Json(jsonWriters);
+
+        }
+
+
 
         public static List<WriterClass> writers = new List<WriterClass>
         {
