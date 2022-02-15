@@ -13,9 +13,9 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
     public class MessageController : Controller
     {
         Message2Manager message2Manager = new Message2Manager(new EfMessage2Repository());
-        public IActionResult Inbox() //gelen kutusu
+        public IActionResult Inbox(int id) //gelen kutusu
         {
-            int id = 2;
+            //int id = 2;
             var values = message2Manager.GetInboxListByWriter(id);
             return View(values);
         }

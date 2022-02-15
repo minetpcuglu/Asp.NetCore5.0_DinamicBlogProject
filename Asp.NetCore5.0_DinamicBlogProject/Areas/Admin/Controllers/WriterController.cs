@@ -54,8 +54,6 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 
         }
 
-
-
         public static List<WriterClass> writers = new List<WriterClass>
         {
             new WriterClass
