@@ -1,9 +1,33 @@
-﻿@using Asp.NetCore5.0_DinamicBlogProject.Controllers
-@model List<Class1>
+﻿@model List<Class1>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Adı Soyadı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td><a href="#" class="btn btn-outline-danger"> <b>Detaylar</b></a></td>
+            <td><a href="#" class="btn btn-outline-warning"> <b>Sil</b></a></td>
+        </tr>
+    }
+
+
+
+</table>
+<a href ="/Employee/AddEmployee/" class="btn btn-outline-dark"> Yeni Personel Ekle</a>
+
 

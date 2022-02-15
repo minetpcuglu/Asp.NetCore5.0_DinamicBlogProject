@@ -32,6 +32,20 @@ namespace BlogApiDemo
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BlogApiDemo", Version = "v1" });
             });
+
+            #region CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                    .SetIsOriginAllowed(_ => true)
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                .Build());
+            });
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +63,12 @@ namespace BlogApiDemo
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app
+             .UseCors("CorsPolicy")
+             .UseAuthentication()
+             .UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
