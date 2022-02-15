@@ -1,4 +1,5 @@
-﻿using BlogApiDemo.DataAccessLayer;
+﻿using Asp.NetCore5._0_DinamicBlogProject.Models;
+using BlogApiDemo.DataAccessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -12,21 +13,23 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
     public class EmployeeController : Controller
     {
-        //readonly HttpClient _httpClient;
-        //public EmployeeController(HttpClient httpClient)
+
+        //private readonly IHttpClientFactory _httpClient;
+        //public EmployeeController(IHttpClientFactory httpClient)
         //{
         //    _httpClient = httpClient;
         //}
-       
+
         public async Task<IActionResult> Index()
         {
+            using (var client = new HttpClient())
+            {
+                var responseMessage = await client.GetAsync("https://localhost:44363/api/Default");
+                var jsonString = await responseMessage.Content.ReadAsStringAsync(); //asenkron olarak karsıla
+                var values = JsonConvert.DeserializeObject<List<EmployeeVM>>(jsonString); //listelerken
 
-            var _httpClient = new HttpClient();
-
-            var responseMessage = await _httpClient.GetAsync("https://localhost:44363/api/Default");
-            var jsonString = await responseMessage.Content.ReadAsStringAsync(); //asenkron olarak karsıla
-            var values = JsonConvert.DeserializeObject<List<Class1>>(jsonString); //listelerken
-            return View(values);
+                return View(values);
+            }
         }
 
 
@@ -37,23 +40,21 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> AddEmployee( Employee employee)
+        public async Task<IActionResult> AddEmployee(EmployeeVM employee)
         {
-            var _httpClient = new HttpClient();
-            var jsonEmployee = JsonConvert.SerializeObject(employee); //eklersen 
-            StringContent content = new StringContent(jsonEmployee, Encoding.UTF8, "application/json");
-            var responseMessage = await _httpClient.PostAsync("https://localhost:44363/api/Default", content);
-            if (responseMessage.IsSuccessStatusCode)
+            using (var client = new HttpClient())
             {
-                return RedirectToAction("Index");
+                var jsonEmployee = JsonConvert.SerializeObject(employee); //eklersen 
+                StringContent content = new StringContent(jsonEmployee, Encoding.UTF8, "application/json");
+                var responseMessage = await client.PostAsync("https://localhost:44363/api/Default", content);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+                return View(employee);
             }
-            return View(employee);
-        } 
+        }
 
     }
-    public class Class1
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+   
 }
