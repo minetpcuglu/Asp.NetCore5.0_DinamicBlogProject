@@ -88,6 +88,21 @@ namespace Asp.NetCore5._0_DinamicBlogProject
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+            //        < system.webServer >
+            //< modules runAllManagedModulesForAllRequests = "true" >
+
+            //     < remove name = "WebDAVModule" /> < !--bunu ekliyoruz-- >
+
+            //     </ modules >
+
+            //     < handlers >
+
+            //         < remove name = "WebDAV" /> < !--bunu ekliyoruz-- >
+
+            //        </ handlers >
+            //    </ system.webServer >
         }
     }
 }

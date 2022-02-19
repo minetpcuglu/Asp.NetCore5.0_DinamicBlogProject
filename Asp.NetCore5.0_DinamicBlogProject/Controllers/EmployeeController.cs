@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
+
     public class EmployeeController : Controller
     {
 
@@ -55,6 +56,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             }
         }
 
+
         [HttpGet]
         public async Task<IActionResult> EditEmployee(int id)
         {
@@ -74,6 +76,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 
         }
 
+
         [HttpPost]
         public async Task<IActionResult> EditEmployee(EmployeeVM employee)
         {
@@ -82,7 +85,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             {
                 var value = JsonConvert.SerializeObject(employee);
                 var content = new StringContent(value, Encoding.UTF8, "application/json");
-                var responseMessage = await httpClient.PutAsync("https://localhost:44363/api/Default/", content);
+             
+                var responseMessage = await httpClient.PutAsync("https://localhost:44363/api/Default/EmployeeUpdate", content);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -92,6 +96,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             }
 
         }
+
+       
+
+
 
         public async Task<IActionResult> DeleteEmployee(int id)
         {
@@ -108,5 +116,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             }
         }
 
+       
+
     }
+   
 }

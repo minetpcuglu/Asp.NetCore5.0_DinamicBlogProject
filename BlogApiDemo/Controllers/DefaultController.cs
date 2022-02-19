@@ -67,11 +67,13 @@ namespace BlogApiDemo.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+      
+        [HttpPost]
+        [Route("EmployeeUpdate")]
         public IActionResult EmployeeUpdate(Employee employee)
         {
             using var c = new Context();
-            var emp = c.Find<Employee>(employee.Id);
+            var emp =  c.Find<Employee>(employee.Id);
             if (emp == null)
             {
                 return NotFound();
@@ -84,9 +86,5 @@ namespace BlogApiDemo.Controllers
                 return Ok();
             }
         }
-
-
-
-
     }
 }

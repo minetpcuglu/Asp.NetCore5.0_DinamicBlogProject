@@ -62,7 +62,7 @@ namespace BlogApiDemo
 
             app.UseRouting();
 
-            app.UseAuthorization();
+         
 
             app
              .UseCors("CorsPolicy")
