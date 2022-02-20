@@ -1,3 +1,4 @@
+using BlogApiDemo.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +46,10 @@ namespace BlogApiDemo
                 .Build());
             });
 
+            #endregion
+
+            #region AutoMapper
+              services.AddAutoMapper(typeof(EmployeeMapping));
             #endregion
         }
 

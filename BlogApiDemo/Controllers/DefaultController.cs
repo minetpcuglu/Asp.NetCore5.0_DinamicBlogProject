@@ -1,4 +1,7 @@
-﻿using BlogApiDemo.DataAccessLayer;
+﻿using AutoMapper;
+using BlogApiDemo.DataAccessLayer;
+using BlogApiDemo.DataAccessLayer.Repository.EntityTypeRepository.Interface;
+using BlogApiDemo.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,21 +15,29 @@ namespace BlogApiDemo.Controllers
     [ApiController]
     public class DefaultController : ControllerBase
     {
-        //veri listeleme
+
+        private readonly IMapper _mapper;
+        //private readonly IEmployeeRepository _employeeRepository;
+        public DefaultController(IMapper mapper/*, IEmployeeRepository employeeRepository*/)
+        {
+            //_employeeRepository = employeeRepository;
+            _mapper = mapper;
+        }
 
         [HttpGet]
         public IActionResult EmployeeList()
         {
-            using var c= new Context();
+            using var c = new Context();
             var value = c.Employees.ToList();
+     
             return Ok(value); //basarılı status kodu : "200"
 
         }
 
-       
+
 
         [HttpPost]
-        public IActionResult EmployeeAdd(Employee employee)
+        public IActionResult EmployeeAdd(EmployeeVM employee)
         {
             using var c = new Context();
             c.Add(employee);
@@ -67,24 +78,27 @@ namespace BlogApiDemo.Controllers
             }
         }
 
-      
+
         [HttpPost]
         [Route("EmployeeUpdate")]
-        public IActionResult EmployeeUpdate(Employee employee)
+        public async Task<IActionResult> EmployeeUpdate(EmployeeVM employeeVM)
         {
             using var c = new Context();
-            var emp =  c.Find<Employee>(employee.Id);
-            if (emp == null)
+            var emp = await c.FindAsync<Employee>(employeeVM.Id);
+            var update = _mapper.Map<Employee>(emp);
+            if (update == null)
             {
                 return NotFound();
             }
             else
             {
-                emp.Name = employee.Name;
-                c.Update(emp);
+                update.Name = employeeVM.Name;
+                c.Update(update);
                 c.SaveChanges();
                 return Ok();
             }
+
+
         }
     }
 }

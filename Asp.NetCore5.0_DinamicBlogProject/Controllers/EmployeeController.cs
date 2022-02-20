@@ -78,21 +78,21 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> EditEmployee(EmployeeVM employee)
+        public async Task<IActionResult> EditEmployee(EmployeeVM employeeVM)
         {
 
             using (var httpClient = new HttpClient())
             {
-                var value = JsonConvert.SerializeObject(employee);
+                var value = JsonConvert.SerializeObject(employeeVM);
                 var content = new StringContent(value, Encoding.UTF8, "application/json");
              
-                var responseMessage = await httpClient.PutAsync("https://localhost:44363/api/Default/EmployeeUpdate", content);
+                var responseMessage = await httpClient.PostAsync("https://localhost:44363/api/Default/EmployeeUpdate", content);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
                 }
-                return View(employee);
+                return View(employeeVM);
             }
 
         }
