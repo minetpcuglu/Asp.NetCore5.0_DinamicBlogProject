@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +11,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
     public class AdminController : Controller
     {
-        public IActionResult Index()
+
+       
+        public IActionResult  Index()
         {
             return View();
         }
+
+
+  
     }
 }
