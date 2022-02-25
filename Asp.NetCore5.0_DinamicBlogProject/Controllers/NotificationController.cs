@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    [AllowAnonymous]
+    //[AllowAnonymous]
     public class NotificationController : Controller
     {
         NotificationManager notificationManager = new NotificationManager(new EfNotificationRepository());

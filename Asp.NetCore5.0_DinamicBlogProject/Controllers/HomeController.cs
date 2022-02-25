@@ -1,4 +1,5 @@
 ﻿using Asp.NetCore5._0_DinamicBlogProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,7 +18,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         {
             _logger = logger;
         }
-
+        //[DynamicBlogAuthorizeRole("Admin")]
         public IActionResult Index()
         {
             return View();

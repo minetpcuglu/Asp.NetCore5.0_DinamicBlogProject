@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    [AllowAnonymous]
+    
     public class LoginController : Controller
     {
         Context c = new Context();

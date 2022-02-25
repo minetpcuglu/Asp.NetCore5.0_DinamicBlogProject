@@ -1,0 +1,122 @@
+﻿
+@model UserSignInViewModel
+@{ 
+    Layout = null;
+}
+
+
+
+
+@*<hr />
+    <form asp-action="SignIn">
+        <table>
+            <tr>
+                <td colspan="3"><div asp-validation-summary="All"></div></td>
+            </tr>
+            <tr>
+                <td><label asp-for="NameSurname"></label></td>
+                <td><input asp-for="NameSurname" /></td>
+                <td><span asp-validation-for="NameSurname"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="UserName"></label></td>
+                <td><input asp-for="UserName" /></td>
+                <td><span asp-validation-for="UserName"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Mail"></label></td>
+                <td><input asp-for="Mail" /></td>
+                <td><span asp-validation-for="Mail"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password"></label></td>
+                <td><input asp-for="Password" /></td>
+                <td><span asp-validation-for="Password"></span></td>
+
+            </tr>
+            <tr>
+                <td><label asp-for="ConfirmPassword"></label></td>
+                <td><input asp-for="ConfirmPassword" /></td>
+                <td><span asp-validation-for="ConfirmPassword"></span></td>
+
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" value="Üye Ol" /></td>
+            </tr>
+
+
+        </table>
+    </form>*@
+
+    <html>
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>INSPINIA | Register</title>
+
+        <link href="~/aspnetadmin/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/aspnetadmin/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="~/aspnetadmin/css/plugins/iCheck/custom.css" rel="stylesheet">
+        <link href="~/aspnetadmin/css/animate.css" rel="stylesheet">
+        <link href="~/aspnetadmin/css/style.css" rel="stylesheet">
+
+    </head>
+
+    <body class="gray-bg">
+
+        <div class="middle-box text-center loginscreen   animated fadeInDown">
+            <div>
+                <div>
+
+                    <h1 class="logo-name">IN+</h1>
+
+                </div>
+                <h3>Kayıt Ekranı</h3>
+                <p>Create account to see it in action.</p>
+                <form class="m-t" role="form" action="SignIn">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="NameSurname" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Mail" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="UserName" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="ConfirmPassword" required="">
+                    </div>
+                
+                    <div class="form-group">
+                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>
+
+                    <p class="text-muted text-center"><small>Already have an account?</small></p>
+                    <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                </form>
+              
+            </div>
+        </div>
+
+        <!-- Mainly scripts -->
+        <script src="~/aspnetadmin/js/jquery-3.1.1.min.js"></script>
+        <script src="~/aspnetadmin/js/popper.min.js"></script>
+        <script src="~/aspnetadmin/js/bootstrap.js"></script>
+        <!-- iCheck -->
+        <script src="~/aspnetadmin/js/plugins/iCheck/icheck.min.js"></script>
+        <script>$(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });</script>
+    </body>
+
+    </html>

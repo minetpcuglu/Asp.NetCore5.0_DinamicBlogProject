@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
 {
-    [AllowAnonymous]
     public class MessageController : Controller
     {
         Message2Manager message2Manager = new Message2Manager(new EfMessage2Repository());

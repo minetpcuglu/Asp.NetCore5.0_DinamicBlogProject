@@ -1,8 +1,11 @@
+using DataAccessLayer.Concrete.Context;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,23 +29,34 @@ namespace Asp.NetCore5._0_DinamicBlogProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) //authorzie için yapýlandýrma yapma
         {
-            services.AddControllersWithViews();
 
+
+            services.AddDbContext<Context>();
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+
+
+
+
+
+            services.AddControllersWithViews();
+            //services.AddTransient<UserManager<AppUser>>();
+            //services.AddTransient<UserManager<AppRole>>();
             services.AddSession();//session yonetimi için.
 
-            services.AddMvc(config =>
-            {
-                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-                config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
-            });
 
-            services.AddMvc();
-            services.AddAuthentication(
-                CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-                {
-                    x.LoginPath = "/Login/Index/";
-                }
-                );
+            //services.AddMvc(config =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            //    config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme iþlemi
+            //});
+
+
+            //services.AddAuthentication(
+            //    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+            //    {
+            //        x.LoginPath = "/RegisterUser/SignIn/";
+            //    }
+            //    );
 
 
 
@@ -86,7 +100,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=RegisterUser}/{action=SignIn}/{id?}");
             });
 
 
