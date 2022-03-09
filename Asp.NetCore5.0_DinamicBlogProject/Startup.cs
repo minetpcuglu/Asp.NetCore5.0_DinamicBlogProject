@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.AutoMapper;
+using BusinessLayer.ValidationRules.CustomValidation;
 using DataAccessLayer.Concrete.Context;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -44,7 +45,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject
                 x.Password.RequireLowercase = false; // =>özelliði; þifre içerisinde en az 1 adet küçük harf zorunluluðu olmasý özelliðini false yaptýk.
                 x.Password.RequireUppercase = false; // => özelliði; þifre içerisinde en az 1 adet büyük harf zorunluluðu olmasýný false yaptýk.
                 x.Password.RequireNonAlphanumeric = false; // =>  özelliði; þifre içerisinde en az 1 adet alfanümerik karakter zorunluluðu olmasý özelliði false.
-            }).AddEntityFrameworkStores<Context>();
+                x.Password.RequireDigit = false; //rakam
+            }).AddPasswordValidator<CustomSignInPasswordValidation>()
+         .AddErrorDescriber<SignInCustomIdentityErrorDescriber>()
+         .AddEntityFrameworkStores<Context>();
 
 
 
