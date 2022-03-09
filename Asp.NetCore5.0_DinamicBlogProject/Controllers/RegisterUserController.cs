@@ -50,20 +50,30 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                 //    UserName = model.UserName,
                 //    Surname = model.NameSurname
                 //};
+               
+            
                 var appUser = _mapper.Map<AppUserDTO, AppUser>(model);
                 var result = await _userManager.CreateAsync(appUser, model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
-                if (result.Succeeded)
+                if (!model.IsAcceptTheContract)
                 {
-                    return RedirectToAction("Index", "Home");
-
-                }
-                else
-                {
-                    foreach (var item in result.Errors)
+                    ModelState.AddModelError("IsAcceptTheContract", "Gizlilik Sözleşmesini lütfen okuyup onaylayın");
+                    return View(model);
+                    if (result.Succeeded)
                     {
-                        ModelState.AddModelError("", item.Description);
+
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    else
+                    {
+                        foreach (var item in result.Errors)
+                        {
+                            ModelState.AddModelError("", item.Description);
+                        }
                     }
                 }
+              
+              
             }
             return View(model);
         }

@@ -28,5 +28,7 @@ namespace DataAccessLayer.Models.DTOs
         [Display(Name = "Kullanıcı Adı")]
         [Required(ErrorMessage = "Kullanıcı Adı Giriniz")]
         public string UserName { get; set; }
+
+        public bool IsAcceptTheContract { get; set; }  //gizlilik sözleşme onayı
     }
 }

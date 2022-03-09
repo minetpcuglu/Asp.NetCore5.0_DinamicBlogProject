@@ -16,7 +16,7 @@
         <div class="inner-sec">
             <div class="login p-5 bg-light mx-auto mw-100">
 
-
+            
                 <form method="post" asp-controller="RegisterUser" asp-action="SignIn">
                     <div asp-validation-summary="All"></div>
                     <div class="form-row">
@@ -52,13 +52,16 @@
                     </div>
 
 
-                    <button type="submit" class="btn btn-outline-success"><b>Değişiklikleri Kaydet</b></button>
-                    <br />
+                    <button type="submit" class="btn btn-outline-success"><b>Kayıt ol</b></button>
+                  
+                    @*<button type="submit" class="btn btn-outline-success" href="/RegisterUser/Login/" ><b>Giriş Yap</b></button>
+                    <br />*@
 
                     <p>
                         <br />
-
-                        <a href="#" id="btn1">Tüm şartları okudum,kabul ediyorum.</a> @*/* sweet alert kullanımı*/*@
+                        <div class="checkbox i-checks"><label><input  type="checkbox" asp-for="IsAcceptTheContract"/><i></i> Tüm şartları,okudum kabul ediyorum</label></div>
+                        <br />
+                        <a href="#" id="btn1">Gizlilik Koşulları için..</a> @*/* sweet alert kullanımı*/*@
                     </p>
                 </form>
 
