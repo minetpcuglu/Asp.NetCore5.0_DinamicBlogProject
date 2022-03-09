@@ -1,4 +1,5 @@
 ﻿using Asp.NetCore5._0_DinamicBlogProject.Models.VMs;
+using DataAccessLayer.Models.DTOs;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,9 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             return View();
         }
 
+
+
+
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -33,7 +37,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(UserSignInViewModel model)
+        public async Task<IActionResult> SignIn(AppUserDTO model)
         {
             if (ModelState.IsValid) //moeldeki kurallar saglandıysa
             {
@@ -43,7 +47,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                     UserName = model.UserName,
                     Surname = model.NameSurname
                 };
-                var result = await _userManager.CreateAsync(user ,model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
+                var result = await _userManager.CreateAsync(user, model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");

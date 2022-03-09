@@ -1,122 +1,77 @@
 ﻿
-@model UserSignInViewModel
-@{ 
-    Layout = null;
+@model AppUserDTO
+
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
 
 
-
-@*<hr />
-    <form asp-action="SignIn">
-        <table>
-            <tr>
-                <td colspan="3"><div asp-validation-summary="All"></div></td>
-            </tr>
-            <tr>
-                <td><label asp-for="NameSurname"></label></td>
-                <td><input asp-for="NameSurname" /></td>
-                <td><span asp-validation-for="NameSurname"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="UserName"></label></td>
-                <td><input asp-for="UserName" /></td>
-                <td><span asp-validation-for="UserName"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Mail"></label></td>
-                <td><input asp-for="Mail" /></td>
-                <td><span asp-validation-for="Mail"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Password"></label></td>
-                <td><input asp-for="Password" /></td>
-                <td><span asp-validation-for="Password"></span></td>
-
-            </tr>
-            <tr>
-                <td><label asp-for="ConfirmPassword"></label></td>
-                <td><input asp-for="ConfirmPassword" /></td>
-                <td><span asp-validation-for="ConfirmPassword"></span></td>
-
-            </tr>
-            <tr>
-                <td colspan="3"><input type="submit" value="Üye Ol" /></td>
-            </tr>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> @*/*sweet alert kullanımı*/*@
+<script src="~/lib/jquery/dist/jquery.js"></script> @*/*sweet alert kullanımı* root lib jquery dist jquery/*@
 
 
-        </table>
-    </form>*@
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Yazar Kayıt Sayfası</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
 
-    <html>
 
-    <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>INSPINIA | Register</title>
-
-        <link href="~/aspnetadmin/css/bootstrap.min.css" rel="stylesheet">
-        <link href="~/aspnetadmin/font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link href="~/aspnetadmin/css/plugins/iCheck/custom.css" rel="stylesheet">
-        <link href="~/aspnetadmin/css/animate.css" rel="stylesheet">
-        <link href="~/aspnetadmin/css/style.css" rel="stylesheet">
-
-    </head>
-
-    <body class="gray-bg">
-
-        <div class="middle-box text-center loginscreen   animated fadeInDown">
-            <div>
-                <div>
-
-                    <h1 class="logo-name">IN+</h1>
-
-                </div>
-                <h3>Kayıt Ekranı</h3>
-                <p>Create account to see it in action.</p>
-                <form class="m-t" role="form" action="SignIn">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="NameSurname" required="">
+                <form method="post" asp-controller="RegisterUser" asp-action="SignIn">
+                    <div asp-validation-summary="All"></div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="NameSurname"> <b>Adınız Soyadınız:</b></label>
+                            <input asp-for="NameSurname" class="form-control" />
+                            <span asp-validation-for="NameSurname" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Mail"> <b>E-Mail:</b></label>
+                            <input asp-for="Mail" type="email" class="form-control" />
+                            <span asp-validation-for="Mail" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Mail" required="">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="UserName" required="">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password" required="">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="ConfirmPassword" required="">
-                    </div>
-                
-                    <div class="form-group">
-                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary block full-width m-b">Kayıt Ol</button>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputPassword1 mb-2"><b>Şifre:</b></label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputPassword1 mb-2"><b>Şifre:</b></label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
 
-                    <p class="text-muted text-center"><small>Already have an account?</small></p>
-                    <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="UserName"> <b>Kullanıcı Adı:</b></label>
+                            <input asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="btn btn-outline-success"><b>Değişiklikleri Kaydet</b></button>
+                    <br />
+
+                    <p>
+                        <br />
+
+                        <a href="#" id="btn1">Tüm şartları okudum,kabul ediyorum.</a> @*/* sweet alert kullanımı*/*@
+                    </p>
                 </form>
-              
+
             </div>
         </div>
-
-        <!-- Mainly scripts -->
-        <script src="~/aspnetadmin/js/jquery-3.1.1.min.js"></script>
-        <script src="~/aspnetadmin/js/popper.min.js"></script>
-        <script src="~/aspnetadmin/js/bootstrap.js"></script>
-        <!-- iCheck -->
-        <script src="~/aspnetadmin/js/plugins/iCheck/icheck.min.js"></script>
-        <script>$(document).ready(function(){
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-        });</script>
-    </body>
-
-    </html>
+    </div>
+    <br />
+    <!--<button class="btn btn-info" id="btn1">Button1</button>--> @*//sweet alert kullanımı*@
+    <script>
+        $('#btn1').click(function () {
+            swal("Site Kabul Şartları", "Sitemize verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir.Eğer e-posta bülteininden çıkmak isterseniz mail ileti bültenini durdurabilirsiniz.Şifre ve Mail adresiniz güvenliğiniz için veri tabanlarımızda güvenli bir şekilde saklanmaktadır. ");
+        });
+    </script>
+</section>

@@ -1,3 +1,4 @@
+﻿using BusinessLayer.AutoMapper;
 using DataAccessLayer.Concrete.Context;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -27,27 +28,40 @@ namespace Asp.NetCore5._0_DinamicBlogProject
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) //authorzie i�in yap�land�rma yapma
+        public void ConfigureServices(IServiceCollection services) //authorzie için yapılandırma yapma
         {
 
 
             services.AddDbContext<Context>();
-            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
+                x.SignIn.RequireConfirmedAccount = false;
+                x.SignIn.RequireConfirmedEmail = false;
+                x.SignIn.RequireConfirmedPhoneNumber = false;
+                x.User.RequireUniqueEmail = false;
+                x.Password.RequiredLength = 3; // => password e girilen karakterin minimum 3 olmasýný saðladýk. Varsayýlan deðer 6 dýr.
+                x.Password.RequiredUniqueChars = 0;
+                x.Password.RequireLowercase = false; // =>özelliði; þifre içerisinde en az 1 adet küçük harf zorunluluðu olmasý özelliðini false yaptýk.
+                x.Password.RequireUppercase = false; // => özelliði; þifre içerisinde en az 1 adet büyük harf zorunluluðu olmasýný false yaptýk.
+                x.Password.RequireNonAlphanumeric = false; // =>  özelliði; þifre içerisinde en az 1 adet alfanümerik karakter zorunluluðu olmasý özelliði false.
+            }).AddEntityFrameworkStores<Context>();
 
 
 
-
+            #region Automapper
+            services.AddAutoMapper(typeof(AppUserMapping));
+            #endregion
 
             services.AddControllersWithViews();
             //services.AddTransient<UserManager<AppUser>>();
             //services.AddTransient<UserManager<AppRole>>();
-            services.AddSession();//session yonetimi i�in.
+            services.AddSession();//session yonetimi için.
 
 
             //services.AddMvc(config =>
             //{
             //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            //    config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme i�lemi
+            //    config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme işlemi
             //});
 
 
@@ -76,13 +90,13 @@ namespace Asp.NetCore5._0_DinamicBlogProject
                 app.UseHsts();
             }
 
-            //hata sayfas� kullan�m tan�m�
+            //hata sayfası kullanım tanımı
             app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseSession();//session y�netimi i�in
+            app.UseSession();//session yönetimi için
 
             app.UseRouting();
 
@@ -100,7 +114,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject
 
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=RegisterUser}/{action=SignIn}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
 
 
