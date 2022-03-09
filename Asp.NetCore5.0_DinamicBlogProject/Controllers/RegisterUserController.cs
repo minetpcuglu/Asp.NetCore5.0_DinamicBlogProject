@@ -42,6 +42,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(AppUserDTO model)
         {
+            //ModelState.AddModelError("IsAcceptTheContract", "Gizlilik Sözleşmesini lütfen okuyup onaylayın");
+           
             if (ModelState.IsValid) //moeldeki kurallar saglandıysa
             {
                 //AppUser user = new AppUser()
@@ -54,14 +56,15 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             
                 var appUser = _mapper.Map<AppUserDTO, AppUser>(model);
                 var result = await _userManager.CreateAsync(appUser, model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
-                if (!model.IsAcceptTheContract)
-                {
-                    ModelState.AddModelError("IsAcceptTheContract", "Gizlilik Sözleşmesini lütfen okuyup onaylayın");
-                    return View(model);
+                //if (!model.IsAcceptTheContract)
+                //{
+                //    return View(model);
+
                     if (result.Succeeded)
                     {
 
                         return RedirectToAction("Index", "Home");
+                      
 
                     }
                     else
@@ -71,7 +74,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                             ModelState.AddModelError("", item.Description);
                         }
                     }
-                }
+                //}
               
               
             }
