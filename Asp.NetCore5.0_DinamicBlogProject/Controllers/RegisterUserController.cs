@@ -1,4 +1,5 @@
 ﻿using Asp.NetCore5._0_DinamicBlogProject.Models.VMs;
+using AutoMapper;
 using DataAccessLayer.Models.DTOs;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
@@ -16,8 +17,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
     public class RegisterUserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        public RegisterUserController(UserManager<AppUser> userManager)
+        private readonly IMapper _mapper;
+        public RegisterUserController(UserManager<AppUser> userManager, IMapper mapper)
         {
+            _mapper = mapper;
             _userManager = userManager;
         }
 
@@ -41,13 +44,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         {
             if (ModelState.IsValid) //moeldeki kurallar saglandıysa
             {
-                AppUser user = new AppUser()
-                {
-                    Email = model.Mail,
-                    UserName = model.UserName,
-                    Surname = model.NameSurname
-                };
-                var result = await _userManager.CreateAsync(user, model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
+                //AppUser user = new AppUser()
+                //{
+                //    Email = model.Mail,
+                //    UserName = model.UserName,
+                //    Surname = model.NameSurname
+                //};
+                var appUser = _mapper.Map<AppUserDTO, AppUser>(model);
+                var result = await _userManager.CreateAsync(appUser, model.Password); //identtiy kütüphanesinin kendi create metoduyla ekleme yaptık
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
