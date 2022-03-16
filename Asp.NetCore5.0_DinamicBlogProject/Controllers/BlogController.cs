@@ -21,12 +21,15 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         BlogValidator blogRules = new BlogValidator();
         Context c = new Context();
+
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var value = blogManager.GetBlogListWithCategory();
             return View(value);
         }
 
+        [AllowAnonymous]
         public IActionResult BlogReadAll(int id)
         {
             //Comment içi ID den gelen degeri belirleme

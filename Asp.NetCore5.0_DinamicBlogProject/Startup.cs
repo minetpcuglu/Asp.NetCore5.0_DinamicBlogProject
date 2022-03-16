@@ -108,6 +108,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject
 
             app.UseAuthorization();
 
+            //gidecegi url belirleme endpoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
