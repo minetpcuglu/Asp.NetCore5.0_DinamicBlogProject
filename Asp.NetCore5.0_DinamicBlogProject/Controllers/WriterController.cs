@@ -49,7 +49,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         public IActionResult WriterEditProfile()
         {
             Context c = new Context();
-            var userMail = User.Identity.Name;
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
             //sisteme otantike olan kullanıcının bilgilerinin gelmesi
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
             var writervalue = writerManager.GetById(writerId);

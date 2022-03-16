@@ -16,11 +16,19 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
        WriterManager writerManager = new WriterManager(new EfWriterRepository());
+
+        Context c = new Context();
       
         public IActionResult Index()
         {
+            var userName = User.Identity.Name;
+          
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+
+
             ViewBag.CountBlogTotel = blogManager.GetList().Count();
-            ViewBag.CountBlogTotelWriter = blogManager.GetBlogListByWriter(1).Count();
+            ViewBag.CountBlogTotelWriter = blogManager.GetBlogListByWriter(writerId).Count();
             ViewBag.CountCategoryTotel = categoryManager.GetList().Count();
             return View();
         }
