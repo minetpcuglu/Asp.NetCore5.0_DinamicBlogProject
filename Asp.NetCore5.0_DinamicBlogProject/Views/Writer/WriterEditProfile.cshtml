@@ -29,11 +29,11 @@
                     <input asp-for="@Model.Email" type="email" class="form-control" />
                     <span asp-validation-for="@Model.Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                @*<div class="form-group">
                     <label asp-for="@Model.ImageUrl"> <b>Image Url:</b></label>
                     <input asp-for="@Model.ImageUrl" type="text" class="form-control" />
                     <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
-                </div>
+                </div>*@
                 @*<div class="form-group">
             <label asp-for="PasswordHash"> <b>Şifre:</b></label>
             <input asp-for="PasswordHash" type="password" class="form-control" />
@@ -41,11 +41,11 @@
         </div>*@
 
 
-                @*<div class="form-group">
-            <label asp-for="ImageUrl"> <b>Resim:</b></label>
+                <div class="form-group">
+            <label asp-for="@Model.ImageUrl"> <b>Resim:</b></label>
             <input type="file" name="file" class="form-control" />
         </div>
-        <div>
+        @*<div>
             <label asp-for="Surname"> <b>Yazar Soyadı:</b></label>
             <textarea asp-for="Surname" class="form-control"></textarea>
             <span asp-validation-for="Surname" class="text-danger"></span>
