@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Models.DTOs
 {
-    public class EditProfileViewModel
+   public class EditProfileViewModel
     {
-
+    
         public string Surname { get; set; }
         public string ImageUrl { get; set; }
         [Display(Name = "User Name")]
+        public string UserName { get; set; }
         public string Email { get; set; }
     }
 }

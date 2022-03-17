@@ -57,16 +57,14 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpGet]
         public async Task<IActionResult> WriterEditProfile()
         {
-            //Context c = new Context();
-            //var userName = User.Identity.Name;
-            //var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            ////sisteme otantike olan kullanıcının bilgilerinin gelmesi
-            //var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
-            //var writervalue = writerManager.GetById(writerId);
-            //return View(writervalue);
+           
             var value = await _userManager.FindByNameAsync(User.Identity.Name);
-            //var id = c.Users.Where(x => x.UserName == value.ToString()).FirstOrDefault();
-            return View(value);
+            EditProfileViewModel model = new EditProfileViewModel();
+            model.Email = value.Email;
+            model.Surname = value.Surname;
+            model.ImageUrl = value.ImageUrl;
+            model.UserName = value.UserName;
+            return View(model);
         }
 
         [HttpPost]
@@ -77,24 +75,27 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             //if (result.IsValid)
             //{
             var value = await _userManager.FindByNameAsync(User.Identity.Name);
-            model.Email = value.Email;
-            model.Surname = value.Surname;
-            model.ImageUrl = value.ImageUrl;
-                if (file != null)
-                {
+            value.UserName = model.UserName;
+            value.Surname = model.Surname;
+            value.Email = model.Email;
+            value.ImageUrl = model.ImageUrl;
+            var result = await _userManager.UpdateAsync(value);
+                //if (file != null)
+                //{
 
-                    var extension = Path.GetExtension(file.FileName); //uzantiya ulasmak //.jpg .png
-                    var randomFileName = string.Format($"{Guid.NewGuid()}{extension}");  //random bir sayı ile resim dosyaları birbirine çakışmaması
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", randomFileName);
-                    user.ImageUrl = randomFileName;
+                //    var extension = Path.GetExtension(file.FileName); //uzantiya ulasmak //.jpg .png
+                //    var randomFileName = string.Format($"{Guid.NewGuid()}{extension}");  //random bir sayı ile resim dosyaları birbirine çakışmaması
+                //    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\img", randomFileName);
+                //    model.ImageUrl = randomFileName;
 
-                    using (var stream = new FileStream(path, FileMode.Create))  //using içinde olması isimiz bittiginde otamatşk silinecek olması.
-                    {
-                        await file.CopyToAsync(stream);
-                    }
-                }
+                //    using (var stream = new FileStream(path, FileMode.Create))  //using içinde olması isimiz bittiginde otamatşk silinecek olması.
+                //    {
+                //        await file.CopyToAsync(stream);
+                //    }
+                //}
+                
 
-               userManager.Update(user);
+            
 
                 return RedirectToAction("Index","Dashboard");
             //}

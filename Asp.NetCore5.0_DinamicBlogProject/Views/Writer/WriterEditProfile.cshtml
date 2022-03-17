@@ -1,4 +1,4 @@
-﻿@model AppUser
+﻿@model EditProfileViewModel
 @{
     ViewData["Title"] = "WriterEditProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -12,34 +12,44 @@
                 <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
 
 
-                @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
+               
 
                 <div class="form-group">
-                    <label asp-for="UserName"> <b>Yazar Kullanıcı Adı:</b></label>
-                    <input asp-for="UserName" type="text" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="@Model.Surname"> <b>Yazar Kullanıcı Adı:</b></label>
+                    <input asp-for="@Model.Surname" type="text" class="form-control" />
+                    <span asp-validation-for="@Model.Surname" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Email"> <b>Mail:</b></label>
-                    <input asp-for="Email" type="email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <label asp-for="@Model.UserName"> <b>Yazar Kullanıcı Adı:</b></label>
+                    <input asp-for="@Model.UserName" type="text" class="form-control" />
+                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PasswordHash"> <b>Şifre:</b></label>
-                    <input asp-for="PasswordHash" class="form-control" />
-                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                    <label asp-for="@Model.Email"> <b>Mail:</b></label>
+                    <input asp-for="@Model.Email" type="email" class="form-control" />
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="@Model.ImageUrl"> <b>Image Url:</b></label>
+                    <input asp-for="@Model.ImageUrl" type="text" class="form-control" />
+                    <span asp-validation-for="@Model.ImageUrl" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+            <label asp-for="PasswordHash"> <b>Şifre:</b></label>
+            <input asp-for="PasswordHash" type="password" class="form-control" />
+            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+        </div>*@
 
 
-                <div class="form-group">
-                    <label asp-for="ImageUrl"> <b>Resim:</b></label>
-                    <input type="file" name="file" class="form-control" />
-                </div>
-                <div>
-                    <label asp-for="Surname"> <b>Yazar Soyadı:</b></label>
-                    <textarea asp-for="Surname" class="form-control"></textarea>
-                    <span asp-validation-for="Surname" class="text-danger"></span>
-                </div>
+                @*<div class="form-group">
+            <label asp-for="ImageUrl"> <b>Resim:</b></label>
+            <input type="file" name="file" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="Surname"> <b>Yazar Soyadı:</b></label>
+            <textarea asp-for="Surname" class="form-control"></textarea>
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>*@
                 <br />
                 <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
                 <button class="btn btn-light">İptal</button>
