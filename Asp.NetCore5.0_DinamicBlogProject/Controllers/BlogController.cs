@@ -41,8 +41,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         public IActionResult GetBlogListByWriterId()
         {
            
-            var userMail = User.Identity.Name;
-           
+            var username = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
             var value = blogManager.GetBlogListWithCategoryByWriter(writerId);
             return View(value);
@@ -66,9 +66,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog blog)
         {
-            var userMail = User.Identity.Name;
-          
+            var username = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+
             ValidationResult result = blogRules.Validate(blog);
             if (result.IsValid )
             {
@@ -116,8 +117,8 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         [HttpPost]
         public IActionResult UpdateBlog(Blog blog)
         {
-            var userMail = User.Identity.Name;
-
+            var username = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
             blog.WriterId = writerId;
             blog.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
