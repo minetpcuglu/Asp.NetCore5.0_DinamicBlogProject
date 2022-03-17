@@ -15,6 +15,7 @@ namespace BusinessLayer.AutoMapper
         {
             CreateMap<AppUser, AppUserDTO>().ReverseMap();
             CreateMap<AppUserDTO, AppUser>().ReverseMap();
+            CreateMap<EditProfileViewModel, AppUser>().ReverseMap();
 
         }
     }

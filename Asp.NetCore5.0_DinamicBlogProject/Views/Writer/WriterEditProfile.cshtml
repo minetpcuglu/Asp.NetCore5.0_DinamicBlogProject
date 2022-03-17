@@ -1,4 +1,4 @@
-﻿@model Writer
+﻿@model AppUser
 @{
     ViewData["Title"] = "WriterEditProfile";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
@@ -12,33 +12,33 @@
                 <h4 class="card-title">Yazar Profil Bilgileri Düzenleme</h4>
 
 
-                @Html.HiddenFor(x => x.WriterId, new { @class = "form-control" })
+                @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
 
                 <div class="form-group">
-                    <label asp-for="WriterName"> <b>Yazar Adı Soyadı:</b></label>
-                    <input asp-for="WriterName" type="text" class="form-control" />
-                    <span asp-validation-for="WriterName" class="text-danger"></span>
+                    <label asp-for="UserName"> <b>Yazar Kullanıcı Adı:</b></label>
+                    <input asp-for="UserName" type="text" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="WriterMail"> <b>Mail:</b></label>
-                    <input asp-for="WriterMail" type="email" class="form-control" />
-                    <span asp-validation-for="WriterMail" class="text-danger"></span>
+                    <label asp-for="Email"> <b>Mail:</b></label>
+                    <input asp-for="Email" type="email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="WriterPassword"> <b>Şifre:</b></label>
-                    <input asp-for="WriterPassword" class="form-control" />
-                    <span asp-validation-for="WriterPassword" class="text-danger"></span>
+                    <label asp-for="PasswordHash"> <b>Şifre:</b></label>
+                    <input asp-for="PasswordHash" class="form-control" />
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
                 </div>
 
 
                 <div class="form-group">
-                    <label asp-for="WriterImage"> <b>Resim:</b></label>
+                    <label asp-for="ImageUrl"> <b>Resim:</b></label>
                     <input type="file" name="file" class="form-control" />
                 </div>
                 <div>
-                    <label asp-for="WriterAbout"> <b>Yazar Hakkında:</b></label>
-                    <textarea asp-for="WriterAbout" class="form-control"></textarea>
-                    <span asp-validation-for="WriterAbout" class="text-danger"></span>
+                    <label asp-for="Surname"> <b>Yazar Soyadı:</b></label>
+                    <textarea asp-for="Surname" class="form-control"></textarea>
+                    <span asp-validation-for="Surname" class="text-danger"></span>
                 </div>
                 <br />
                 <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
