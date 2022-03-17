@@ -23,10 +23,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
     {
         WriterManager writerManager = new WriterManager(new EfWriterRepository());
         AppUserManager userManager = new AppUserManager(new EfAppUserRepository());
+        readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         WriterValidator validationRules = new WriterValidator();
-        public WriterController(UserManager<AppUser> userManager)
+        public WriterController(UserManager<AppUser> userManager ,SignInManager<AppUser> signInManager)
         {
+            _signInManager = signInManager;
             _userManager = userManager;
         }
 
@@ -47,7 +49,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             return View();
         }
 
-        //[AllowAnonymous]
+      
 
         public IActionResult WriterTextThema()
         {
@@ -77,6 +79,7 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             value.Surname = model.Surname;
             value.Email = model.Email;
             value.ImageUrl = model.ImageUrl;
+            value.PasswordHash = _userManager.PasswordHasher.HashPassword(value,model.Password);
           
             if (file != null)
             {
@@ -94,5 +97,13 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
             }
             return RedirectToAction("Index","Dashboard");
         }
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+
+            return RedirectToAction("Index","Login");
+        }
     }
+   
 }
