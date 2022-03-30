@@ -26,6 +26,15 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 
         public IActionResult SendBox()
         {
+            var username = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var writerId = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterId).FirstOrDefault();
+            var values = message2Manager.GetSendboxListByWriter(writerId);
+            return View(values);
+        }
+
+        public IActionResult MailCompose()
+        {
             return View();
         }
     }
