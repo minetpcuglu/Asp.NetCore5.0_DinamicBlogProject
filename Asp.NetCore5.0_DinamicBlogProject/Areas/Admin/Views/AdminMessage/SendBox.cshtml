@@ -19,8 +19,8 @@
                             <div class="space-25"></div>
                             <h5>Klasörler</h5>
                             <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="/Admin/AdminMessage/InBox/"> <i class="fa fa-inbox "></i> Gelen Mesajlar <span class="label label-warning float-right">16</span> </a></li>
-                                <li><a href="/Admin/AdminMessage/SendBox/"> <i class="fa fa-envelope-o"></i> Gönderilen Mesajlar</a></li>
+                                <li><a href="/Admin/AdminMessage/InBox/"> <i class="fa fa-inbox "></i> Gelen Mesajlar <span class="label label-success float-right">@ViewBag.value</span> </a></li>
+                                <li><a href="/Admin/AdminMessage/SendBox/"> <i class="fa fa-envelope-o"></i> Gönderilen Mesajlar  <span class="label label-warning float-right">@ViewBag.value</span></a></li>
                                 <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Taslaklar <span class="label label-danger float-right">2</span></a></li>
                                 <li><a href="mailbox.html"> <i class="fa fa-trash-o"></i> Çöp Kutusu</a></li>
                             </ul>
@@ -42,7 +42,7 @@
                         </div>
                     </form>
                     <h2>
-                        Inbox (0)
+                        Giden Kutusu (@ViewBag.value)
                     </h2>
                     <div class="mail-tools tooltip-demo m-t-md">
                         <div class="btn-group float-right">
