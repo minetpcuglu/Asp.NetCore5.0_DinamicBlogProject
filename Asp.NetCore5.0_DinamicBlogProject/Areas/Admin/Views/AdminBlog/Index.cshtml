@@ -8,28 +8,6 @@
 <html>
 <body>
 
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-10">
-           
-                <h2>deneme</h2>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a>E-commerce</a>
-                    </li>
-                    <li class="breadcrumb-item active">
-                        <strong>Products grid</strong>
-                    </li>
-                </ol>
-            
-        </div>
-        <div class="col-lg-2">
-
-        </div>
-    </div>
-
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             @foreach (var item in Model)
@@ -39,7 +17,7 @@
                         <div class="ibox-content product-box">
                            
                             <div class="product-imitation">
-                                [ INFO ]
+                                <img src="@item.BlogImage" height="225" width="225"/>
                             </div>
                             <div class="product-desc">
                                 <span class="product-price">
@@ -55,7 +33,7 @@
                                 </div>
                                 <div class="m-t text-righ">
 
-                                    <a href="#" class="btn btn-xs btn-outline btn-primary">Detaylar<i class="fa fa-long-arrow-right"></i> </a>
+                                    <a href="/Blog/BlogReadAll/@item.BlogId" class="btn btn-xs btn-outline btn-primary">Detaylar<i class="fa fa-long-arrow-right"></i> </a>
                                 </div>
                             </div>
                         </div>
