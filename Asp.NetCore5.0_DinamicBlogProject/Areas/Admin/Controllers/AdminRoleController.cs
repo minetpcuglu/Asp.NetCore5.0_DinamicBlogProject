@@ -13,10 +13,12 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
     public class AdminRoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly UserManager<AppUser> _userManager;
 
-        public AdminRoleController(RoleManager<AppRole> roleManager)
+        public AdminRoleController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -89,6 +91,34 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public IActionResult UserRoleList()
+        {
+            var value = _userManager.Users.ToList();
+            return View(value);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AssignRole(int id)
+        {
+            var user = _userManager.Users.FirstOrDefault(x=>x.Id ==id);
+            var roles = _roleManager.Roles.ToList();
+
+            TempData["Userid"] = user.Id;
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            List<RoleAssignViewModel> model = new List<RoleAssignViewModel>();
+            foreach (var item in roles)
+            {
+                RoleAssignViewModel role = new RoleAssignViewModel();
+                role.RoleId = item.Id;
+                role.Name = item.Name;
+                role.Exists = userRoles.Contains(item.Name);
+                model.Add(role);
+            }
+            return View(model);
         }
 
 
