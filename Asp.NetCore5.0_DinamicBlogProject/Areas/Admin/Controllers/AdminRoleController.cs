@@ -80,5 +80,17 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
         }
 
 
+        public async Task<IActionResult> DeleteRole(int id)
+        {
+            var value = _roleManager.Roles.FirstOrDefault(x => x.Id == id);
+            var result = await _roleManager.DeleteAsync(value);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
     }
 }
