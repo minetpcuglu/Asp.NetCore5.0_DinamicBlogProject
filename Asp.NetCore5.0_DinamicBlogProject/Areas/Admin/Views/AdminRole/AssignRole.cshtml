@@ -5,7 +5,7 @@
 }
 
 <h1></h1>
-<form>
+<form method="post">
     @for (int i = 0; i < Model.Count; i++)
     {
         <div class="form-check">
@@ -14,7 +14,10 @@
             <input type="checkbox" asp-for="@Model[i].Exists" class="form-check-input" />
             <label class="form-check-label" form="@Model[i].Exists">@Model[i].Name</label>
         </div>
-        <a href="/Admin/AdminRole/UserRoleList/" class="btn btn-outline-primary">Kullanıcı Lİstesine Dön</a>
-    }
-</form>
 
+    }
+    <br />
+    <button class="btn btn-info">Değişiklikleri Kaydet</button>
+</form>
+<br />
+<a href="/Admin/AdminRole/UserRoleList/" class="btn btn-outline-primary">Kullanıcı Lİstesine Dön</a>

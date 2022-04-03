@@ -121,6 +121,26 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> models)
+        {
+            var userId = (int) TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userId);
+            foreach (var item in models)
+            {
+                if (item.Exists)  //rol seciliyse durumu true ise
+                {
+                    
+                    await _userManager.AddToRoleAsync(user, item.Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.Name); //seçili olmayanları listeden sil 
+                }
+            }
+            return RedirectToAction("UserRoleList");
+        }
+
 
     }
 }
