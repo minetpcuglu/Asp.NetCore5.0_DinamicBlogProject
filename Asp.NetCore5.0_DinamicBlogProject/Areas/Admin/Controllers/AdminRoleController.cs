@@ -1,5 +1,6 @@
 ﻿using Asp.NetCore5._0_DinamicBlogProject.Models.VMs;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin,Moderator,Writer")] //bu role dısındakiler bu controlere erişemesin
     public class AdminRoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
