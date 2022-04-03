@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -31,8 +32,6 @@ namespace Asp.NetCore5._0_DinamicBlogProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) //authorzie için yapılandırma yapma
         {
-
-
             services.AddDbContext<Context>();
             services.AddIdentity<AppUser, AppRole>(x =>
             {
@@ -50,32 +49,18 @@ namespace Asp.NetCore5._0_DinamicBlogProject
          .AddErrorDescriber<SignInCustomIdentityErrorDescriber>()
          .AddEntityFrameworkStores<Context>();
 
-
-
             #region Automapper
             services.AddAutoMapper(typeof(AppUserMapping));
             #endregion
 
             services.AddControllersWithViews();
-            //services.AddTransient<UserManager<AppUser>>();
-            //services.AddTransient<UserManager<AppRole>>();
             services.AddSession();//session yonetimi için.
 
+            services.ConfigureApplicationCookie(options => //rol hata sayfası erişim reddedildi !
+            {
 
-            //services.AddMvc(config =>
-            //{
-            //    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-            //    config.Filters.Add(new AuthorizeFilter(policy)); //proje seviyesinde authorize yetkilendirme işlemi
-            //});
-
-
-            //services.AddAuthentication(
-            //    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
-            //    {
-            //        x.LoginPath = "/RegisterUser/SignIn/";
-            //    }
-            //    );
-
+                options.AccessDeniedPath = new PathString("/ErrorPage/AccessDenied/");
+            });
 
 
         }
@@ -90,7 +75,6 @@ namespace Asp.NetCore5._0_DinamicBlogProject
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -123,19 +107,6 @@ namespace Asp.NetCore5._0_DinamicBlogProject
             });
 
 
-            //        < system.webServer >
-            //< modules runAllManagedModulesForAllRequests = "true" >
-
-            //     < remove name = "WebDAVModule" /> < !--bunu ekliyoruz-- >
-
-            //     </ modules >
-
-            //     < handlers >
-
-            //         < remove name = "WebDAV" /> < !--bunu ekliyoruz-- >
-
-            //        </ handlers >
-            //    </ system.webServer >
         }
     }
 }

@@ -12,5 +12,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
         {
             return View();
         }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
     }
 }

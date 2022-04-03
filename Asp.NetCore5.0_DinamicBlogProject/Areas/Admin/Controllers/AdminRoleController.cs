@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Asp.NetCore5._0_DinamicBlogProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles ="Admin,Moderator,Writer")] //bu role dısındakiler bu controlere erişemesin
+    [Authorize(Roles ="Admin,Moderator")] //bu role dısındakiler bu controlere erişemesin
     public class AdminRoleController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;

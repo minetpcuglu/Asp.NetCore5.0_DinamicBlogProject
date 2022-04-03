@@ -42,9 +42,10 @@ namespace Asp.NetCore5._0_DinamicBlogProject.Controllers
                 ModelState.AddModelError("", "Hatalı Kullanıcı Adı/Şifre");
                 return View();
             }
-
-
         }
+
+
+
 
 
     }
