@@ -90,7 +90,7 @@ namespace JWT_BlogProject
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
