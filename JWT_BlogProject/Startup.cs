@@ -40,8 +40,8 @@ namespace JWT_BlogProject
                 x.RequireHttpsMetadata = false; //http gerekmedigini belitiyoruz
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = "http://localhost",
-                    ValidateAudience = "http://localhost",
+                    ValidIssuer = "http://localhost",
+                    ValidAudience = "http://localhost",
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("aspnetblogproject")), //byte türünde kullanabilmek için
                     ValidateIssuerSigningKey = true,
                     ValidateLifetime = true,
